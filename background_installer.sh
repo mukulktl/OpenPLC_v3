@@ -52,7 +52,10 @@ function linux_install_deps {
         $1 zypper in -y curl make automake gcc gcc-c++ kernel-devel pkg-config bison flex autoconf libtool openssl-devel cmake libmodbus-devel
         $1 zypper in -y python python-xml python3 python3-pip 
     else
-        fail "Unsupported linux distro."
+        $1 apt-get update
+        $1 apt-get install -y build-essential pkg-config bison flex autoconf \
+                              automake libtool make git \
+                              sqlite3 cmake curl python3 python3-venv
     fi
 }
 
